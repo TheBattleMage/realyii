@@ -62,7 +62,7 @@ class UserController extends Controller
     public function actionIndex()
     {
         $user = UserAR::model()->find('ID=:id', array(':id'=>Yii::app()->user->getId()));
-        $this->render('index',array('user'=>$user));
+        $this->render('index',array('model'=>$user));
     }
 
 	/**

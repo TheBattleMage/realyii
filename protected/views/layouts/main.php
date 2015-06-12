@@ -43,7 +43,7 @@
 					<a href="#" class="logo">
 					Реестр
 					</a>
-					<div class="description">Национальный реестр углеродных единиц</div>
+					<div class="description"><?=Yii::app()->name;?></div>
 					
 					<div class="contact">
 					
@@ -328,9 +328,9 @@
 						<a href="http://porntube.com">
 						<div class="networking ca-icon"></div>
 						<div>
-							<h1 class="ca-main">Подсматривать</h1>
+							<h1 class="ca-main">Заготовка</h1>
 							<p class="ca-sub">
-								Горячие сучки онлайн без СМС и регистрации
+								Без описания
 							</p>
 						</div>	
 						<div class="clear"></div>
@@ -389,7 +389,7 @@
 				
 				<footer>
 				
-					Copyright © Primatech 2014. Реестр углеродных единиц.
+					Copyright © Primatech 2015. <?=Yii::app()->name;?>.
 
 					
 					<div class="clear"></div>

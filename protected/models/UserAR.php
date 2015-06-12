@@ -33,8 +33,7 @@ class UserAR extends CActiveRecord
 			// username and password are required
             array('Login, Password, Password2, DirectorFIO, OrganizationName, Area, PostIndex, Address, Email,
                 BIN, Phone1, KadastrNumber, BankContactPerson, BankBIK, BankIIK, BankRNN, BankName',
-                'required',
-                'on'      =>  self::SCENARIO_REGISTRATION
+                'required'
             ),
 
             array('Email, Login',
