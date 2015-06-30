@@ -22,6 +22,8 @@ if (isset($model->message))
 }
 ?>
 
+<fieldset class="insideItem">
+    <legend>Информация о пользователе</legend>
 <div class="form">
 <?php $form=$this->beginWidget('CActiveForm', array(
 	'id'=>'register-form',
@@ -162,3 +164,4 @@ if (isset($model->message))
 
 <?php $this->endWidget(); ?>
 </div><!-- form -->
+</fieldset>

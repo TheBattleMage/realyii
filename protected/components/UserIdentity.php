@@ -8,7 +8,6 @@
 class UserIdentity extends CUserIdentity
 {
     private $_id;
-    private $_IsAdmin;
 	/**
 	 * Authenticates a user.
 	 * The example implementation makes sure if the username and password
@@ -33,8 +32,8 @@ class UserIdentity extends CUserIdentity
         {
             $this->errorCode=self::ERROR_NONE;
             $this->_id = $user->ID;
-            $this->_IsAdmin = $user->IsAdmin;
             $user->LastVisitDate = $user->CurrentVisitDate;
+            $this->setState('isAdmin', $user->IsAdmin);
             $user->CurrentVisitDate = new CDbExpression('NOW()');
             $user->save();
             //$this->setState("Admin","true");
@@ -47,8 +46,5 @@ class UserIdentity extends CUserIdentity
         return $this->_id;
     }
 
-    public function IsAdmin()
-    {
-        return $this->_IsAdmin;
-    }
+
 }

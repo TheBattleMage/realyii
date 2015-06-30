@@ -10,19 +10,7 @@
     ),
 )); ?>
 
-    <fieldset style="min-width:20px;
-    min-height:20px;
-    padding-left: 5px;
-    padding-top: 5px;
-    /*background-color: #E8EEF3;*/
-    background: #E8EEF3;
-    background-color: #E8EEF3;
-    margin-bottom: 14px;
-    border-top-left-radius: 4px;
-    border-top-right-radius: 4px;
-    border-bottom-right-radius: 4px;
-    border-bottom-left-radius: 4px;
-    border: solid 2px #B6C4CC;">
+    <fieldset class="insideItem">
         <legend>Мобильный телефон</legend>
         <br/>
         <table width="100%" cellspacing="0" cellpadding="0">

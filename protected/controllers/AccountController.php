@@ -50,50 +50,48 @@ class AccountController extends Controller
 		);
 	}
 
-	/**
-	 * This is the default 'index' action that is invoked
-	 * when an action is not explicitly requested by users.
-     *
-
-
-	 * This is the action to handle external exceptions.
-	 */
-
     public function actionIndex()
     {
         $user = UserAR::model()->find('ID=:id', array(':id'=>Yii::app()->user->getId()));
         $this->render('index',array('user'=>$user));
     }
 
-	/**
-	 * Изменение пароля
-	 */
-	public function actionChangepass()
-	{
-		$model = new ChangepassForm;
+    public function actionRegister()
+    {
+        // Создать модель и указать ей, что используется сценарий регистрации
+        $project = new ProjectAR(ProjectAR::SCENARIO_REGISTRATION);
 
-		// if it is ajax validation request
-		if(isset($_POST['ajax']) && $_POST['ajax']==='changepass-form')
-		{
-			echo CActiveForm::validate($model);
-			Yii::app()->end();
-		}
+        if(isset($_POST['ajax']) && $_POST['ajax']==='register-form')
+        {
+            echo CActiveForm::validate($project);
+            Yii::app()->end();
+        }
 
-		// collect user input data
-		if(isset($_POST['ChangepassForm']))
-		{
-			$model->attributes=$_POST['ChangepassForm'];
-			// validate user input and redirect to the previous page if valid
-			if($model->validate() && $model->change())
+        //print_r($_POST);
+        // Если пришли данные для сохранения
+        if(isset($_POST['ProjectAR']))
+        {
+            // Безопасное присваивание значений атрибутам
+            $project->attributes = $_POST['ProjectAR'];
+
+            // Проверка данных
+            if($project->validate())
             {
-                $model->unsetAttributes();
-                $model->message='Пароль был успешно изменён';
-				//$this->redirect('index.php?r=user/changepass');
+                // Сохранить полученные данные
+                // false нужен для того, чтобы не производить повторную проверку
+                $project->save(false);
+
+                $project->unsetAttributes();
+                $project->message='Регистрация проекта завершилась успешно.';
+
+                // Перенаправить на список зарегестрированных пользователей
+                //$this->redirect($this->createUrl('user/'));
             }
-		}
-		// display the form
-		$this->render('changepass',array('model'=>$model));
-	}
+        }
+
+        // Вывести форму
+        $this->render('register', array('model'=>$project));
+    }
 
 
 }

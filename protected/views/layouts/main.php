@@ -61,7 +61,11 @@
                         if (Yii::app()->user->isGuest)
 						    echo('<a class="social" href="?r=site/login">Авторизация</a>');
                         else
+                        {
+                            echo(Yii::app()->user->isAdmin);
                             echo('<a class="social" href="?r=site/logout">Выйти</a>');
+                        }
+
                         ?>
 						
 						
@@ -220,18 +224,11 @@
                 //$user = UserAR::model()->findByPk(1);
                 //$user = UserAR::model()->find('ID=:ID', array(':ID'=>2));
                 //echo($user->Name.'<br>');
-                /*
-                $user = new UserAR;
-                $user->Login = "newlogin";
-                $user->password = CPasswordHelper::hashPassword("123321");
-                $user->Name = "newName";
-                $user->save();
-                */
 
 /* @var $this SiteController */
 
-                /*
 
+/*
                 $this->pageTitle=Yii::app()->name;
 
                 $sort = new CSort();
@@ -240,9 +237,9 @@
                         'asc'=>'Login',
                         'desc'=>'Login desc',
                     ),
-                    'Name'=>array(
-                        'asc'=>'Name',
-                        'desc'=>'Name desc',
+                    'OrganizationName'=>array(
+                        'asc'=>'OrganizationName',
+                        'desc'=>'OrganizationName desc',
                     ),
                 );
 
@@ -264,10 +261,10 @@
 
                     'columns' => array(
                         array(
-                            'name' => 'Name',
-                            'header' => 'фыва',
+                            'name' => 'OrganizationName',
+                            'header' => 'Имя организации',
                             'type' => 'raw',
-                            'value' => '$data->Name',
+                            'value' => '$data->OrganizationName',
                         ),
                         array(
                             'name' => 'Login',
@@ -278,7 +275,7 @@
                     ),
 
                 ));
-                */
+*/
 
                 //echo(Yii::app()->user->getState('Admin'));
 

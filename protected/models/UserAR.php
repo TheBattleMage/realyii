@@ -22,15 +22,16 @@ class UserAR extends CActiveRecord
         return 'users';
     }
 
-	/**
-	 * Declares the validation rules.
-	 * The rules state that username and password are required,
-	 * and password needs to be authenticated.
-	 */
+    public function relations()
+    {
+        return array(
+            'projects'=>array(self::HAS_MANY, 'ProjectAR', 'OwnerUserID'),
+        );
+    }
+
 	public function rules()
 	{
 		return array(
-			// username and password are required
             array('Login, Password, Password2, DirectorFIO, OrganizationName, Area, PostIndex, Address, Email,
                 BIN, Phone1, KadastrNumber, BankContactPerson, BankBIK, BankIIK, BankRNN, BankName',
                 'required'
