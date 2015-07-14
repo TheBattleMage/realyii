@@ -56,6 +56,24 @@ class AccountController extends Controller
         $this->render('index',array('user'=>$user));
     }
 
+    public function actionView()
+    {
+        $project = ProjectAR::model()->find('ID=:id', array(':id'=>$_GET['ID']));
+        if (!isset($project)  || $project->OwnerUserID != Yii::app()->user->getId())
+            $this->render('view',array('error'=>'Ошибка доступа','model'=>null));
+        else
+            $this->render('view',array('model'=>$project));
+    }
+
+    public function actionUpdate()
+    {
+        $project = ProjectAR::model()->find('ID=:id', array(':id'=>$_GET['ID']));
+        if (!isset($project)  || $project->OwnerUserID != Yii::app()->user->getId())
+            $this->render('update',array('error'=>'Ошибка доступа','model'=>null));
+        else
+            $this->render('update',array('model'=>$project));
+    }
+
     public function actionRegister()
     {
         // Создать модель и указать ей, что используется сценарий регистрации

@@ -3,27 +3,36 @@
 /* @var $model LoginForm */
 /* @var $form CActiveForm  */
 
-$this->pageTitle=Yii::app()->name . ' - Регистрация проекта';
+echo('<br><a href="#" onclick="history.back(-1)" class="backBtn">Назад</a>');
+
+$this->pageTitle=Yii::app()->name . ' - Просмотр проекта';
 $this->breadcrumbs=array(
-	'Project Register',
+	'Project View',
 );
 ?>
 
-<h1>Регистрация</h1>
+<h1>Просмотр проекта</h1>
 
-<p>Пожалуйста, заполните следующую форму для прохождения процедуры регистрации в системе:</p>
+<p>Здесь отображается основная информация о вашем проекте:</p>
 
 
 <?php
+if (isset($error))
+{
+    echo($error);
+    return;
+}
+
 if (isset($model->message))
 {
     echo($model->message);
     return;
 }
 
+
 ?>
 <?php $form=$this->beginWidget('CActiveForm', array(
-    'id'=>'register-form',
+    'id'=>'view-form',
     'enableClientValidation'=>true,
     'clientOptions'=>array(
         'validateOnSubmit'=>true,
@@ -36,23 +45,23 @@ if (isset($model->message))
     <legend>Общее описание</legend>
     <div class="form">
 
-    <p class="note">Поля, помеченные символом <span class="required">*</span> являются обязательноными.</p>
+        <p class="note">Поля, помеченные символом <span class="required">*</span> являются обязательноными.</p>
 
 
-    <table width="100%">
-        <?php
-        printSpecialTr($form, $model, 'ProjName','textField',true);
-        printSpecialTr($form, $model, 'ProjDesc','textField',true);
-        printSpecialTr($form, $model, 'ProjType','textField',true);
-        printSpecialTr($form, $model, 'ProjMinistryNumber','textField',true);
-        printSpecialTr($form, $model, 'ProjTechDesc','textArea',true);
-        printSpecialTr($form, $model, 'ProjTechnologies','textArea',true);
-        printSpecialTr($form, $model, 'ProjHow','textArea',true);
-        printSpecialTr($form, $model, 'ProjReductionAmount','textField',true);
-        printSpecialTr($form, $model, 'ProjApproved','checkBox',true);
-        ?>
+        <table width="100%">
+            <?php
+            printSpecialTr($form, $model, 'ProjName','textField',true);
+            printSpecialTr($form, $model, 'ProjDesc','textField',true);
+            printSpecialTr($form, $model, 'ProjType','textField',true);
+            printSpecialTr($form, $model, 'ProjMinistryNumber','textField',true);
+            printSpecialTr($form, $model, 'ProjTechDesc','textArea',true);
+            printSpecialTr($form, $model, 'ProjTechnologies','textArea',true);
+            printSpecialTr($form, $model, 'ProjHow','textArea',true);
+            printSpecialTr($form, $model, 'ProjReductionAmount','textField',true);
+            printSpecialTr($form, $model, 'ProjApproved','checkBox',true);
+            ?>
 
-    </table>
+        </table>
     </div>
 </fieldset>
 
@@ -117,21 +126,6 @@ if (isset($model->message))
             printSpecialTr($form, $model, 'EstReduction','textField',true);
             printSpecialTr($form, $model, 'EstBaseEmissions','textField',true);
             printSpecialTr($form, $model, 'EstReductionWithLeaks','textField',true);
-            ?>
-
-        </table>
-    </div>
-</fieldset>
-
-
-<fieldset class="insideItem">
-    <legend>Завершение регистрации</legend>
-    <div class="form">
-
-        <table width="100%" border="0">
-            <?php
-            printTr("Продолжая, вы соглашаетесь с польовательским соглашением",
-                CHtml::submitButton('Зарегистрироваться'));
             ?>
 
         </table>

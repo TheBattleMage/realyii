@@ -9,11 +9,8 @@ $this->breadcrumbs=array(
 );
 ?>
 
-<h1>Смена пароля</h1>
-
 <p>Для смены пароля вам необходимо заполнить следующую форму:</p>
 
-<div class="form">
     <?php $form=$this->beginWidget('CActiveForm', array(
         'id'=>'changepass-form',
         'enableClientValidation'=>true,
@@ -31,23 +28,25 @@ $this->breadcrumbs=array(
     }
     ?>
 
-    <div class="row">
-        <?php echo $form->label($model,'oldpassword'); ?>
-        <?php echo $form->passwordField($model,'oldpassword'); ?>
-        <?php echo $form->error($model,'oldpassword'); ?>
-    </div>
 
-    <div class="row">
-        <?php echo $form->label($model,'password'); ?>
-        <?php echo $form->passwordField($model,'password'); ?>
-        <?php echo $form->error($model,'password'); ?>
-    </div>
+    <fieldset class="insideItem">
+        <legend>Общее описание</legend>
+        <div class="form">
 
-    <div class="row">
-        <?php echo $form->label($model,'password2'); ?>
-        <?php echo $form->passwordField($model,'password2'); ?>
-        <?php echo $form->error($model,'password2'); ?>
-    </div>
+            <p class="note">Поля, помеченные символом <span class="required">*</span> являются обязательноными.</p>
+
+
+            <table width="100%">
+            <?php
+                printSpecialTr($form, $model, 'oldpassword','passwordField',true);
+                printSpecialTr($form, $model, 'password','passwordField',true);
+                printSpecialTr($form, $model, 'password2','passwordField',true);
+            ?>
+            </table>
+        </div>
+
+    </fieldset>
+
 
     <div class="row buttons">
         <?php echo CHtml::submitButton('Сменить пароль'); ?>
@@ -56,4 +55,3 @@ $this->breadcrumbs=array(
 
 
     <?php $this->endWidget(); ?>
-</div><!-- form -->

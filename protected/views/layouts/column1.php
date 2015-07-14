@@ -16,7 +16,7 @@
     {
         $this->widget('zii.widgets.CMenu',array(
             'items'=>array(
-                array('label'=>'Информация', 'url'=>array('account/index')),
+                array('label'=>'Список проектов', 'url'=>array('account/index')),
                 array('label'=>'Регистрация проекта', 'url'=>array('account/register')),
                 array('label'=>'Contact', 'url'=>array('account/contact'))
             ),

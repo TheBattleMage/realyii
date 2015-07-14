@@ -14,7 +14,7 @@ function TestOut()
 
 function genTr($description, $value)
 {
-    return "<tr align='left' valign='middle'><td width='40%'>".$description."</td><td>".$value."</td></tr>";
+    return "<tr align='left' valign='middle'><td width='40%'>$description</td><td>$value</td></tr>";
 }
 
 function printTr($description, $value)
@@ -26,6 +26,20 @@ function printTrShort($form, $model, $FieldName)
 {
     printTr($form->labelEx($model,$FieldName),
         $form->textField($model,$FieldName).$form->error($model,$FieldName));
+}
+
+function printSpecialTr($form, $model, $FieldName, $Type, $NormalizeStyle)
+{
+    if ($NormalizeStyle)
+        printTr($form->labelEx($model,$FieldName),
+            $form->$Type(
+                $model,
+                $FieldName,
+                array('style' => 'width:200px;')) . $form->error($model,$FieldName)
+        );
+    else
+        printTr($form->labelEx($model,$FieldName),
+            $form->$Type($model,$FieldName).$form->error($model,$FieldName));
 }
 
 
@@ -54,6 +68,22 @@ function randomColor()
     return $str;
 }
 
+function DatePicker($This, $model, $modelName, $dateFieldName)
+{
+    //DatePicker($this, $model, 'ProjectAR','ScenBegin');
+    return $This->widget('zii.widgets.jui.CJuiDatePicker',array(
+        'name'=>$modelName."[".$dateFieldName."]",
+        'id'=>$modelName. '_' .$dateFieldName,
+        'value'=>Yii::app()->dateFormatter->format("y-M-d",strtotime($model->$dateFieldName)),
+        'options'=>array(
+            'showAnim'=>'fold',
+            'dateFormat'=>'yy-mm-dd',
+        ),
+        'htmlOptions'=>array(
+            'style'=>'height:20px;'
+        ),
+    ));
+}
 
 
 ?>
