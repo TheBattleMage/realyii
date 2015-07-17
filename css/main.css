@@ -903,6 +903,18 @@ strong {
 	float: left;
 }
 
+.AdminLink {
+    background: #4997c9 url(../images/admin.png) no-repeat;
+    background-position: 50%;
+    width: 40px;
+    height: 40px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    margin-right: 20px;
+    margin-bottom: 10px;
+    float: left;
+}
+
 .networking {
 	background: #4997c9 url(../images/1.png) no-repeat;
 	background-position: 50%;
@@ -1113,6 +1125,14 @@ strong {
     -ms-animation: moveFromLeft 400ms ease;
 	background: #555 url(../images/account.png) no-repeat;
 	background-position: 50%;
+}
+
+.features li:hover .AdminLink{
+    -webkit-animation: moveFromLeft 400ms ease;
+    -moz-animation: moveFromLeft 400ms ease;
+    -ms-animation: moveFromLeft 400ms ease;
+    background: #555 url(../images/admin.png) no-repeat;
+    background-position: 50%;
 }
 
 .features li:hover .ca-main{

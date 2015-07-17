@@ -13,8 +13,6 @@ $this->breadcrumbs=array(
 
 <h1>Просмотр проекта</h1>
 
-<p>Здесь отображается основная информация о вашем проекте:</p>
-
 
 <?php
 if (isset($error))
@@ -28,110 +26,157 @@ if (isset($model->message))
     echo($model->message);
     return;
 }
-
-
 ?>
-<?php $form=$this->beginWidget('CActiveForm', array(
-    'id'=>'view-form',
-    'enableClientValidation'=>true,
-    'clientOptions'=>array(
-        'validateOnSubmit'=>true,
-    ),
-)); ?>
 
-<?php echo CHtml::errorSummary($model);?>
+<p>Список прикрепленных документов:</p>
+<div style="width: 100%;">
+    <?php
+    $this->pageTitle=Yii::app()->name;
 
-<fieldset class="insideItem">
-    <legend>Общее описание</legend>
-    <div class="form">
+    $sort = new CSort();
+    $sort->attributes = array(
+        'ID'=>array(
+            'asc'=>'ID',
+            'desc'=>'ID desc',
+        ),
+        'DocType'=>array(
+            'asc'=>'DocType',
+            'desc'=>'DocType desc',
+        ),
+        'DocCategory'=>array(
+            'asc'=>'DocCategory',
+            'desc'=>'DocCategory desc',
+        ),
+        'OriginalFileName'=>array(
+            'asc'=>'OriginalFileName',
+            'desc'=>'OriginalFileName desc',
+        ),
+        'Date'=>array(
+            'asc'=>'Date',
+            'desc'=>'Date desc',
+        ),
+    );
 
-        <p class="note">Поля, помеченные символом <span class="required">*</span> являются обязательноными.</p>
+    $dataProvider=new CActiveDataProvider('ProjDocAR', array(
+        'criteria'=>array(
+            'condition'=>'ProjectID='.$model->ID,
+        ),
+        'pagination'=>array(
+            'pageSize'=>20,
+        ),
+        'sort'=>$sort,
+    ));
 
+    $this->widget('zii.widgets.grid.CGridView', array(
+        'dataProvider'=>$dataProvider,
+        //'itemsCssClass'=>'table-striped',
 
-        <table width="100%">
-            <?php
-            printSpecialTr($form, $model, 'ProjName','textField',true);
-            printSpecialTr($form, $model, 'ProjDesc','textField',true);
-            printSpecialTr($form, $model, 'ProjType','textField',true);
-            printSpecialTr($form, $model, 'ProjMinistryNumber','textField',true);
-            printSpecialTr($form, $model, 'ProjTechDesc','textArea',true);
-            printSpecialTr($form, $model, 'ProjTechnologies','textArea',true);
-            printSpecialTr($form, $model, 'ProjHow','textArea',true);
-            printSpecialTr($form, $model, 'ProjReductionAmount','textField',true);
-            printSpecialTr($form, $model, 'ProjApproved','checkBox',true);
-            ?>
+        'columns' => array(
+            array(
+                'name' => 'ID',
+                'type' => 'raw', // вывод без экранирования символов
+                'value' => '$data->ID',
+            ),
+            array(
+                'name' => 'DocType',
+                'type' => 'raw',
+                'value' => '$data->DocType',
+            ),
+            array(
+                'name' => 'DocCategory',
+                'type' => 'raw',
+                'value' => '$data->DocCategory',
+            ),
+            array(
+                'name' => 'OriginalFileName',
+                'type' => 'raw',
+                'value' => '$data->OriginalFileName',
+            ),
+            array(
+                'name' => 'Date',
+                'type' => 'raw',
+                'value' => '$data->Date',
+            ),
+            array(
+                'class'=>'CButtonColumn',
+                'header'=>'Действия',
+                'viewButtonUrl'=>'Yii::app()->createUrl("/admin/view", array("ID" => $data["ID"]))',
+                'deleteButtonUrl'=>'Yii::app()->createUrl("/admin/delete", array("ID" =>  $data["ID"]))',
+                'updateButtonUrl'=>'Yii::app()->createUrl("/admin/update", array("ID" =>  $data["ID"]))',
+            ),
+        ),
 
-        </table>
-    </div>
-</fieldset>
+    ));
+    ?>
+</div>
 
-<fieldset class="insideItem">
-    <legend>Место расположения проекта</legend>
-    <div class="form">
+<p>Список сокращений:</p>
+<div style="width: 100%;">
+    <?php
+    $this->pageTitle=Yii::app()->name;
 
-        <table width="100%" border="0">
-            <?php
-            printSpecialTr($form, $model, 'AddGPS','textField',true);
-            printSpecialTr($form, $model, 'AddRegion','textField',true);
-            printSpecialTr($form, $model, 'AddCity','textField',true);
-            printSpecialTr($form, $model, 'AddComments','textField',true);
-            ?>
+    $sort = new CSort();
+    $sort->attributes = array(
+        /*'ID'=>array(
+            'asc'=>'ID',
+            'desc'=>'ID desc',
+        ),*/
+    );
 
-        </table>
-    </div>
-</fieldset>
+    $dataProvider=new CActiveDataProvider('ProjReductionAR', array(
+        'criteria'=>array(
+            'condition'=>'ProjectID='.$model->ID,
+        ),
+        'pagination'=>array(
+            'pageSize'=>20,
+        ),
+        'sort'=>$sort,
+    ));
 
-<fieldset class="insideItem">
-    <legend>Базовый сценарий</legend>
-    <div class="form">
+    $this->widget('zii.widgets.grid.CGridView', array(
+        'dataProvider'=>$dataProvider,
+        //'itemsCssClass'=>'table-striped',
 
-        <table width="100%" border="0">
-            <?php
+        'columns' => array(
+            array(
+                'name' => 'ID',
+                'type' => 'raw', // вывод без экранирования символов
+                'value' => '$data->ID',
+            ),
+            array(
+                'name' => 'Name',
+                'type' => 'raw',
+                'value' => '$data->Name',
+            ),
+            array(
+                'name' => 'ProtocolNumber',
+                'type' => 'raw',
+                'value' => '$data->ProtocolNumber',
+            ),
+            array(
+                'name' => 'Year',
+                'type' => 'raw',
+                'value' => '$data->Year',
+            ),
+            array(
+                'name' => 'CO2Eq',
+                'type' => 'raw',
+                'value' => '$data->CO2Eq',
+            ),
+            array(
+                'name' => 'ReductionAmount',
+                'type' => 'raw',
+                'value' => '$data->ReductionAmount',
+            ),
+            array(
+                'class'=>'CButtonColumn',
+                'header'=>'Действия',
+                'viewButtonUrl'=>'Yii::app()->createUrl("/admin/view", array("ID" => $data["ID"]))',
+                'deleteButtonUrl'=>'Yii::app()->createUrl("/admin/delete", array("ID" =>  $data["ID"]))',
+                'updateButtonUrl'=>'Yii::app()->createUrl("/admin/update", array("ID" =>  $data["ID"]))',
+            ),
+        ),
 
-            printSpecialTr($form, $model, 'ScenBegin','dateField',true);
-            printSpecialTr($form, $model, 'ScenReportStart','dateField',true);
-            printSpecialTr($form, $model, 'ScenDesc','textArea',true);
-            printSpecialTr($form, $model, 'ScenReducdeHow','textArea',true);
-            printSpecialTr($form, $model, 'ScenBorders','textArea',true);
-            printSpecialTr($form, $model, 'ScenComments','textArea',true);
-            ?>
-
-        </table>
-    </div>
-</fieldset>
-
-<fieldset class="insideItem">
-    <legend>Продолжительность проекта и периода выпуска углеродных единиц</legend>
-    <div class="form">
-
-        <table width="100%" border="0">
-            <?php
-            printSpecialTr($form, $model, 'TimeBegin','dateField',true);
-            printSpecialTr($form, $model, 'TimeDuration','textField',true);
-            printSpecialTr($form, $model, 'TimeQuotaDuration','textField',true);
-            ?>
-
-        </table>
-    </div>
-</fieldset>
-
-<fieldset class="insideItem">
-    <legend>Оценка сокращения выбросов парниковых газов</legend>
-    <div class="form">
-
-        <table width="100%" border="0">
-            <?php
-            printSpecialTr($form, $model, 'EstEmissions','textField',true);
-            printSpecialTr($form, $model, 'EstLeaks','textField',true);
-            printSpecialTr($form, $model, 'EstReduction','textField',true);
-            printSpecialTr($form, $model, 'EstBaseEmissions','textField',true);
-            printSpecialTr($form, $model, 'EstReductionWithLeaks','textField',true);
-            ?>
-
-        </table>
-    </div>
-</fieldset>
-
-
-
-<?php $this->endWidget(); ?>
+    ));
+    ?>
+</div>

@@ -8,7 +8,6 @@
             'items'=>array(
                 array('label'=>'Информация', 'url'=>array('user/index')),
                 array('label'=>'Пароль', 'url'=>array('user/changepass')),
-                array('label'=>'Contact', 'url'=>array('site/contact'))
             ),
         ));
     }
@@ -18,7 +17,14 @@
             'items'=>array(
                 array('label'=>'Список проектов', 'url'=>array('account/index')),
                 array('label'=>'Регистрация проекта', 'url'=>array('account/register')),
-                array('label'=>'Contact', 'url'=>array('account/contact'))
+            ),
+        ));
+    }
+    else if ($this->uniqueId=='admin')
+    {
+        $this->widget('zii.widgets.CMenu',array(
+            'items'=>array(
+                array('label'=>'Список пользователей', 'url'=>array('admin/index')),
             ),
         ));
     }

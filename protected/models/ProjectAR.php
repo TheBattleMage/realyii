@@ -76,6 +76,8 @@ TimeQuotaDuration, EstEmissions, EstLeaks, EstReduction, EstBaseEmissions, EstRe
             'EstReduction' => 'Сумма ожидаемого сокращения и утечек выбросов',
             'EstBaseEmissions' => 'Оцениваемые выбросы по базовому сценарию',
             'EstReductionWithLeaks' => 'Объем сокращений выбросов от проекта с учетом ожидаемых утечек',
+
+            'RegistrationDate' => 'Дата регистрации проекта'
         );
     }
 

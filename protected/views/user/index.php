@@ -16,12 +16,9 @@
 
             <?php echo CHtml::errorSummary($model);?>
 
-            <p class="note">Поля, помеченные символом <span class="required">*</span> являются обязательноными.</p>
             <table width="100%">
                 <?php
                 printSpecialTr($form, $model, 'Login', 'textField', 1);
-                //printSpecialTr($form, $model, 'Password', 'passwordField', 1);
-                //printSpecialTr($form, $model, 'Password2', 'passwordField', 1);
                 printSpecialTr($form, $model, 'Email', 'emailField', 1);
                 printSpecialTr($form, $model, 'OrganizationName', 'textField', 1);
                 printSpecialTr($form, $model, 'DirectorFIO', 'textField', 1);

@@ -62,7 +62,7 @@
 						    echo('<a class="social" href="?r=site/login">Авторизация</a>');
                         else
                         {
-                            echo(Yii::app()->user->isAdmin);
+                            //echo(Yii::app()->user->isAdmin);
                             echo('<a class="social" href="?r=site/logout">Выйти</a>');
                         }
 
@@ -293,20 +293,39 @@
 						</div>	
 						<div class="clear"></div>
 						</a>
-					</li><!-- end of: FEATURE  -->
-					
-					<li class="feature">
-                        <a href="index.php?r=account/index">
-						<div class="AccountLink ca-icon"></div>
-						<div>
-							<h1 class="ca-main">Аккаунт</h1>
-							<p class="ca-sub">
-								Ваш аккаунт в реестре, управление счетами
-							</p>
-						</div>	
-						<div class="clear"></div>
-						</a>
-					</li><!-- end of: FEATURE  -->
+					</li>
+
+                    <?php if (Yii::app()->user->isAdmin)
+                    {
+                        echo('<li class="feature">
+                            <a href="index.php?r=admin/index">
+                            <div class="AdminLink ca-icon"></div>
+                            <div>
+                                <h1 class="ca-main">Админка</h1>
+                                <p class="ca-sub">
+                        Администраторская часть
+                        </p>
+                            </div>
+                            <div class="clear"></div>
+                            </a>
+					    </li>');
+                    }
+                    else
+                    {
+                      echo('<li class="feature">
+                            <a href="index.php?r=account/index">
+                            <div class="AccountLink ca-icon"></div>
+                            <div>
+                                <h1 class="ca-main">Аккаунт</h1>
+                                <p class="ca-sub">
+                        Ваш аккаунт в реестре, управление счетами
+                        </p>
+                            </div>
+                            <div class="clear"></div>
+                            </a>
+					    </li>');
+                    }
+					?>
 					
 					<li class="feature">
 						<a href="index.php?r=user/index">
@@ -332,7 +351,7 @@
 						</div>	
 						<div class="clear"></div>
 						</a>
-					</li><!-- end of: FEATURE  -->
+					</li>
 				</ul>
 			</div>
             <?php
@@ -371,7 +390,7 @@
 						<div class="block_3">
 							<h1>Наши контакты</h1>
 							<p>
-								Связаться с нами по следующему телефону: +7 727 2255622
+								Связаться с нами по следующему телефону: +7 727 225 56 22
 							</p>
 						</div>
 						
